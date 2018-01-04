@@ -9,7 +9,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1515033498492_9851';
 
   // add your config here
-  config.middleware = [];
+	config.middleware = [ 'webpackDev','webpackHot' ];
 
 	config.static = {
 		prefix: '/',
@@ -46,6 +46,7 @@ module.exports = appInfo => {
 			enable: false
 		}
 	};
+
 
 
 	return config;

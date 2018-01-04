@@ -16,7 +16,7 @@ if (isProd) {
 	renderer = createRenderer(bundle, template)
 } else {
 	// 开发环境使用webpack热更新服务
-	require('../../build/dev-server')(app, (bundle, template) => {
+	require('../../build/dev-server')((bundle, template) => {
 		renderer = createRenderer(bundle, template)
 	})
 }

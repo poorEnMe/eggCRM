@@ -17,7 +17,9 @@
 		data(){
 			return{
 				account:'',
-				xpassword:''
+				xpassword:'',
+                title: 'Login',
+                keywords: 'login'
 			}
 		},
 		methods:{

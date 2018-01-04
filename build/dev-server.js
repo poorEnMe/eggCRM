@@ -4,12 +4,12 @@ const MFS = require('memory-fs')
 const clientConfig = require('./webpack.client.config')
 const serverConfig = require('./webpack.server.config')
 
-module.exports = function setupDevServer (app, cb) {
+module.exports = function setupDevServer (cb) {
   let bundle
   let template
 
   // modify client config to work with hot middleware
-  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
+  // clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
   clientConfig.output.filename = '[name].js'
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
@@ -25,7 +25,7 @@ module.exports = function setupDevServer (app, cb) {
       chunks: false
     }
   })
-  app.use(devMiddleware)
+  // app.use(devMiddleware)
   clientCompiler.plugin('done', () => {
     const fs = devMiddleware.fileSystem
     const filePath = path.join(clientConfig.output.path, 'index.html')
@@ -38,7 +38,7 @@ module.exports = function setupDevServer (app, cb) {
   })
 
   // hot middleware
-  app.use(require('webpack-hot-middleware')(clientCompiler))
+  // app.use(require('webpack-hot-middleware')(clientCompiler))
 
   // watch and update server renderer
   const serverCompiler = webpack(serverConfig)
