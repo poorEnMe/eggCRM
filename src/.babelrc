@@ -1,0 +1,16 @@
+{
+  "presets": [["env",{ "modules": false }]],
+  "plugins": [
+    "transform-object-rest-spread",
+    "syntax-dynamic-import",
+    "transform-object-assign",
+    ["transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }]
+  ],
+  "comments": false
+}

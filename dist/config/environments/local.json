@@ -1,0 +1,11 @@
+{
+  "environment": "local",
+  "database": {
+    "dialect": "mysql",
+    "nameDB": "ucloudy",
+    "userDB": "root",
+    "passDB": "123",
+    "hostDB": "127.0.0.1",
+    "portDB": 3306
+  }
+}
