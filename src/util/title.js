@@ -22,7 +22,7 @@ const clientTitleMixin = {
   mounted () {
     const title = getTitle(this)
     if (title) {
-      document.title = `${title.title} | vue-ssr-template`
+      document.title = `${title.title} | 上海祐云`
       document.querySelector('meta[name="keywords"]').setAttribute('content', title.keywords)
       document.querySelector('meta[name="description"]').setAttribute('content', title.description)
     }

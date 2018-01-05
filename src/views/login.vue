@@ -17,18 +17,30 @@
 		data(){
 			return{
 				account:'',
-				xpassword:'',
-                title: 'Login',
-                keywords: 'login'
+				xpassword:''
 			}
 		},
+        title () {
+            return {
+                title: 'Login',
+                keywords: 'egg,Login',
+                description: 'login page'
+            }
+        },
 		methods:{
 			loginCheck:async function(){
 				let res = {};
 				try {
-					res = await axios.post('/loginCheck',{
-						account:this.account,
-						xpassword:this.xpassword
+					res = await axios('/loginCheck',{
+						url: '/loginCheck',
+                        method: 'post',
+                        data:{
+	                        account:this.account,
+	                        xpassword:this.xpassword,
+                        },
+                        headers:{
+	                        'x-csrf-token': this.$cookie.get('csrfToken')
+                        }
 					})
 				}catch (e){
 					console.log(e);

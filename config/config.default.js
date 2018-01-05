@@ -1,6 +1,8 @@
 'use strict';
 const path = require('path');
 const DBconfig = require('./env.config');
+const ip = require('ip');
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = appInfo => {
   const config = exports = {};
@@ -10,6 +12,14 @@ module.exports = appInfo => {
 
   // add your config here
 	config.middleware = [ 'webpackDev','webpackHot' ];
+
+	// 开发模式开启，production关闭
+	config.webpackDev = {
+		enable: isDev
+	};
+	config.webpackHot = {
+		enable: isDev
+	};
 
 	config.static = {
 		prefix: '/',
@@ -38,15 +48,21 @@ module.exports = appInfo => {
 	// 	}
 	// };
 
+
+	const localIP = ip.address();
+	const domainWhiteList = [];
+	[7001].forEach(port => {
+		domainWhiteList.push(`http://localhost:${port}`);
+		domainWhiteList.push(`http://127.0.0.1:${port}`);
+		domainWhiteList.push(`http://${localIP}:${port}`);
+	});
+
 	config.security = {
-		xframe: {
-			enable: false,
-		},
+		domainWhiteList,
 		csrf: {
-			enable: false
+			headerName: 'x-csrf-token', // 通过 header 传递 CSRF token 的默认字段为 x-csrf-token
 		}
 	};
-
 
 
 	return config;
