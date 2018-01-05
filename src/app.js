@@ -6,19 +6,6 @@ import { sync } from 'vuex-router-sync'
 import * as uiv from 'uiv'
 import titleMixin from './util/title'
 import vueCookie from 'vue-cookie';
-import axios from 'axios'
-
-
-
-Vue.prototype.$http=axios;
-axios.defaults.baseURL = '/ajaxurl/welfare/gpa/';
-axios.defaults.timeout=1000,
-//默认的contenttype为json以及utf-8；
-	axios.defaults.headers={'Content-Type': 'text/html;charset=gb2312'}
-new Vue({
-	el: '#app',
-	render: h => h(App)
-})
 
 
 Vue.mixin(titleMixin);
